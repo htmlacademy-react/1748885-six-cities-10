@@ -1,0 +1,18 @@
+// import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+// import {Fragment} from 'react';
+import {Link} from 'react-router-dom';
+
+function Page404(): JSX.Element {
+  return (
+    <div className="screen__404">
+      <h1>
+        404
+        <br />
+        <small>Page not found</small>
+      </h1>
+      <Link to="/">Go to main page</Link>
+    </div>
+  );
+}
+
+export default Page404;
