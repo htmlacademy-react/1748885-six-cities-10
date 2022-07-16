@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 
 const Places = {
-  PLACES_COUNT: 213,
+  PLACES_COUNT: 312,
 };
 
 const root = ReactDOM.createRoot(
