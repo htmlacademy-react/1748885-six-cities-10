@@ -1,17 +1,13 @@
-import CitiesCard from '../../components/cities-card/cities-card';
+import CitiesPlacesList from '../../components/cities-places-list/cities-places-list';
 import Logo from '../../components/logo/logo';
+import {OfferTypes} from '../../types/offer-type';
 
 type MainScreenProps = {
   placesCount: number;
+  offers: OfferTypes;
 }
 
-
-function MainScreen({placesCount}: MainScreenProps): JSX.Element {
-  const content = [];
-  for (let i = 0; i < 5; i++) {
-    content.push(<CitiesCard />);
-  }
-
+function MainScreen({placesCount, offers}: MainScreenProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -114,9 +110,9 @@ function MainScreen({placesCount}: MainScreenProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {content}
-              </div>
+
+              <CitiesPlacesList offers={offers}/>
+
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

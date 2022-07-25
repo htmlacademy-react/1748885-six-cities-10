@@ -8,7 +8,7 @@ function Page404(): JSX.Element {
       <h1>
         404
         <br />
-        <small>Page not found</small>
+        <small>Not Found</small>
       </h1>
       <Link to="/">Go to main page</Link>
     </div>

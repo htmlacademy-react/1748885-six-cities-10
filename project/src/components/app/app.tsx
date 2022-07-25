@@ -6,34 +6,40 @@ import FavotitesScreen from '../../pages/favorites-screen/favorites-screen';
 import RoomScreen from '../../pages/room-screen/room-screen';
 import Page404 from '../../pages/page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
+import {OfferTypes} from '../../types/offer-type';
 
 type AppScreenProps = {
   placesCount: number;
+  offers: OfferTypes;
 };
 
-function App({ placesCount }: AppScreenProps): JSX.Element {
+function App({ placesCount, offers }: AppScreenProps): JSX.Element {
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main}>
-          <Route index element={<MainScreen placesCount = {placesCount}/>} />
+          <Route index element={
+            <MainScreen
+              placesCount={placesCount}
+              offers={offers}
+            />
+          }
+          />
           <Route path={AppRoute.Login} element={<LoginScreen />} />
           <Route
             path={AppRoute.Favorites}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={AuthorizationStatus.Auth}
               >
-                <FavotitesScreen />
+                <FavotitesScreen offers={offers}/>
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Room}>
-            <Route index element={<RoomScreen />} />
-            <Route path=':id' element={<RoomScreen />} />
-          </Route>
+          <Route path={`${AppRoute.Room}/:id`} element={<RoomScreen offers={offers}/>} />
         </Route>
-        <Route path="*" element={<Page404 />} />
+        <Route path={AppRoute.NotFound} element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );
